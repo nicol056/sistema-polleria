@@ -1,0 +1,639 @@
+
+/* ========================================
+   SISTEMA DE POLLERÍA
+   DISEÑO GENERAL
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f6f8;
+  color: #202b3c;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.header {
+  height: 76px;
+  min-height: 76px;
+  background: white;
+  padding: 0 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+}
+
+.logo h2 {
+  font-size: 18px;
+}
+
+.logo p {
+  color: #7b8493;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.estado {
+  color: #16834b;
+  font-size: 13px;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+.main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 3%;
+}
+
+.bienvenida {
+  width: 100%;
+  max-width: 850px;
+  text-align: center;
+}
+
+.panel {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  text-align: left;
+}
+
+.etiqueta {
+  color: #df801b;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.bienvenida h1,
+.panel h1 {
+  font-size: 36px;
+  margin-top: 16px;
+  color: #202b3c;
+}
+
+.descripcion,
+.panel > p {
+  color: #7b8493;
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+/* ========================================
+   SELECCIÓN DE ROLES
+======================================== */
+
+.roles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 45px;
+}
+
+.rol-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 35px 25px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.rol-card:hover {
+  border-color: #e7831b;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px #0000000c;
+}
+
+.rol-icon {
+  font-size: 48px;
+}
+
+.rol-card h2 {
+  margin-top: 18px;
+  font-size: 23px;
+}
+
+.rol-card p {
+  margin: 12px 0 22px;
+  color: #7b8493;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.rol-link {
+  color: #df801b;
+  font-weight: bold;
+}
+
+/* ========================================
+   BOTÓN VOLVER
+======================================== */
+
+.volver {
+  display: block;
+  margin-bottom: 25px;
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* ========================================
+   PANEL DEL MESERO
+======================================== */
+
+.pedido-panel {
+  width: 100%;
+  max-width: none;
+  margin: auto;
+}
+
+.pedido-panel > .etiqueta,
+.pedido-panel > h1,
+.pedido-panel > p {
+  display: block;
+  text-align: center;
+}
+
+.pedido-seccion {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 22px;
+}
+
+.pedido-seccion h3 {
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+
+.opciones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.opcion {
+  flex: 1;
+  padding: 13px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.opcion.activa {
+  background: #fff3e5;
+  border: 1px solid #e7831b;
+  color: #c46b0c;
+  font-weight: bold;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.campo label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.campo input,
+.campo select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background: white;
+  font-size: 15px;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.producto > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.producto > div span {
+  color: #777;
+  font-size: 13px;
+}
+
+.producto input {
+  width: 85px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+}
+
+.resumen {
+  background: #fff3e5;
+  border: 1px solid #f2d4b0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 22px;
+}
+
+.resumen div {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.resumen strong {
+  color: #c46b0c;
+  font-size: 20px;
+}
+
+.registrar {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #e7831b;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.registrar:hover {
+  background: #cc7012;
+}
+
+.registrar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensaje {
+  padding: 12px;
+  margin-top: 15px;
+  background: #f3f4f6;
+  border-radius: 7px;
+  text-align: center;
+}
+
+/* ========================================
+   AVISO DE PEDIDOS LISTOS PARA EL MESERO
+======================================== */
+
+.aviso-listos {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 9px;
+  background: #dceeff;
+  color: #1763a5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aviso-listos span {
+  font-size: 13px;
+}
+
+.pedidos-mesero {
+  margin-top: 28px;
+}
+
+.pedidos-mesero h2 {
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+
+/* ========================================
+   COCINA - CUADRÍCULA HORIZONTAL
+======================================== */
+
+.lista-cocina {
+  display: grid !important;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+/* Títulos de cada grupo */
+
+.lista-cocina h2 {
+  grid-column: 1 / -1;
+  width: 100%;
+  font-size: 18px;
+  margin: 15px 0 0;
+  padding: 5px 0;
+}
+
+/* ========================================
+   TARJETAS CUADRADAS
+======================================== */
+
+.lista-cocina .pedido-cocina {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  padding: 14px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid #e5b32b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Colores por estado */
+
+.lista-cocina .pedido-cocina.estado-preparacion {
+  border-left-color: #269b5c;
+}
+
+.lista-cocina .pedido-cocina.estado-entregado {
+  border-left-color: #2984d6;
+}
+
+/* ========================================
+   CABECERA DEL PEDIDO
+======================================== */
+
+.pedido-cabecera {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.pedido-cabecera h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.pedido-cabecera > div > span {
+  font-size: 12px;
+  color: #777;
+}
+
+.estado-pedido {
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #fff3cd;
+  color: #946200;
+}
+
+.estado-pedido.estado-preparacion {
+  background: #d9f5e4;
+  color: #167344;
+}
+
+.estado-pedido.estado-entregado {
+  background: #dceeff;
+  color: #1763a5;
+}
+
+/* ========================================
+   HORA DEL PEDIDO
+======================================== */
+
+.hora-pedido {
+  font-size: 11px;
+  color: #888;
+  margin: 5px 0;
+}
+
+/* ========================================
+   PRODUCTOS - SIN PRECIOS
+======================================== */
+
+.lista-cocina .lista-productos-pedido {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 0;
+  margin: 5px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  overflow-y: auto;
+}
+
+.lista-cocina .lista-productos-pedido div {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 0;
+  font-size: 13px;
+  gap: 5px;
+}
+
+/* Ocultar precios y total en cocina */
+
+.lista-cocina .lista-productos-pedido strong,
+.lista-cocina .pedido-total {
+  display: none !important;
+}
+
+/* ========================================
+   BOTONES DE COCINA
+======================================== */
+
+.acciones-pedido {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.acciones-pedido button {
+  width: 100%;
+  padding: 10px 6px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-preparar {
+  background: #269b5c;
+}
+
+.btn-preparar:hover {
+  background: #197d47;
+}
+
+.btn-entregado {
+  background: #2984d6;
+}
+
+.btn-entregado:hover {
+  background: #1763a5;
+}
+
+/* ========================================
+   COCINA - SIN PEDIDOS
+======================================== */
+
+.sin-pedidos {
+  text-align: center;
+  background: white;
+  padding: 45px 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.sin-pedidos > span {
+  font-size: 45px;
+}
+
+.sin-pedidos h3 {
+  margin: 15px 0 10px;
+}
+
+.sin-pedidos p {
+  color: #888;
+  font-size: 14px;
+}
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+footer {
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  padding: 20px 4%;
+  display: flex;
+  justify-content: space-between;
+  color: #7b8493;
+  font-size: 12px;
+}
+
+/* ========================================
+   TABLETS
+======================================== */
+
+@media (max-width: 1000px) {
+  .lista-cocina {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .panel {
+    max-width: 100%;
+  }
+}
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 550px) {
+  .main {
+    padding: 20px 12px;
+  }
+
+  .header {
+    padding: 0 15px;
+  }
+
+  .roles {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .bienvenida h1,
+  .panel h1 {
+    font-size: 27px;
+  }
+
+  .lista-cocina {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .lista-cocina .pedido-cocina {
+    padding: 9px;
+  }
+
+  .pedido-cabecera h3 {
+    font-size: 12px;
+  }
+
+  .estado-pedido {
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+
+  .lista-cocina .lista-productos-pedido div {
+    font-size: 11px;
+  }
+
+  .acciones-pedido button {
+    font-size: 10px;
+    padding: 8px 3px;
+  }
+
+  .pedido-seccion {
+    padding: 16px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
