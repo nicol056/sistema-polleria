@@ -6,6 +6,7 @@ import {
   set,
   onValue,
   update,
+  serverTimestamp,
 } from "firebase/database";
 import { database } from "./firebase";
 import "./App.css";
@@ -161,6 +162,7 @@ function App() {
     try {
       await update(ref(database, `pedidos/${pedido.id}`), {
         estado: nuevoEstado,
+        ...(nuevoEstado === "entregado" && { fechaListo: serverTimestamp() }),
       });
     } catch (error) {
       console.error(error);
@@ -190,10 +192,12 @@ function App() {
       key={pedido.id}
     >
       {modo === "cocina" && (
-        <p className="hora-pedido" role="timer" style={{ marginTop: 0 }}>
-          Tiempo de espera
+        <p className="hora-pedido" role={pedido.estado === "entregado" ? undefined : "timer"} style={{ marginTop: 0 }}>
+          {pedido.estado === "entregado" ? "Tiempo hasta estar listo" : "Tiempo de espera"}
           <strong style={{ display: "block", fontSize: "1.5rem", lineHeight: 1.2, fontVariantNumeric: "tabular-nums" }}>
-            {formatearEspera(pedido.fecha, ahora)}
+            {pedido.estado === "entregado" && !pedido.fechaListo
+              ? "Sin tiempo registrado"
+              : formatearEspera(pedido.fecha, pedido.estado === "entregado" ? pedido.fechaListo : ahora)}
           </strong>
         </p>
       )}
