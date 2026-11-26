@@ -389,7 +389,7 @@ select {
   aspect-ratio: 1 / 1;
   margin: 0;
   padding: 14px;
-  --color-estado: #e5b32b;
+  --color-estado: #fff0b3;
   background: var(--color-estado);
   border: 1px solid var(--color-estado);
   border-left-width: 5px;
@@ -404,11 +404,11 @@ select {
 /* Colores por estado */
 
 .lista-cocina .pedido-cocina.estado-preparacion {
-  --color-estado: #269b5c;
+  --color-estado: #ccefd9;
 }
 
 .lista-cocina .pedido-cocina.estado-entregado {
-  --color-estado: #2984d6;
+  --color-estado: #cfe6ff;
 }
 
 /* ========================================
