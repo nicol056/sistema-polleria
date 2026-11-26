@@ -190,19 +190,24 @@ function App() {
     <article
       className={`pedido-cocina estado-${pedido.estado}`}
       key={pedido.id}
-      style={
-        modo === "cocina" &&
-        pedido.estado !== "entregado" &&
-        Number(pedido.fecha) > 0 &&
-        ahora - pedido.fecha > 15 * 60 * 1000
-          ? { "--color-estado": "#ffc4c4" }
-          : undefined
-      }
     >
       {modo === "cocina" && (
         <p className="hora-pedido" role={pedido.estado === "entregado" ? undefined : "timer"} style={{ marginTop: 0 }}>
           {pedido.estado === "entregado" ? "Tiempo hasta estar listo" : "Tiempo de espera"}
-          <strong style={{ display: "block", fontSize: "1.5rem", lineHeight: 1.2, fontVariantNumeric: "tabular-nums" }}>
+          <strong
+            style={{
+              display: "block",
+              fontSize: "1.5rem",
+              lineHeight: 1.2,
+              fontVariantNumeric: "tabular-nums",
+              color:
+                pedido.estado !== "entregado" &&
+                Number(pedido.fecha) > 0 &&
+                ahora - pedido.fecha > 15 * 60 * 1000
+                  ? "#b91c1c"
+                  : undefined,
+            }}
+          >
             {pedido.estado === "entregado" && !pedido.fechaListo
               ? "Sin tiempo registrado"
               : formatearEspera(pedido.fecha, pedido.estado === "entregado" ? pedido.fechaListo : ahora)}
