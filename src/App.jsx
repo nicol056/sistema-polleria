@@ -20,8 +20,22 @@ const productos = [
   { id: "ensalada", nombre: "Ensalada", precio: 4 },
 ];
 
+function formatearEspera(fecha, ahora) {
+  const inicio = Number(fecha);
+  if (!Number.isFinite(inicio) || inicio <= 0) return "—";
+
+  const segundosTotales = Math.max(0, Math.floor((ahora - inicio) / 1000));
+  const horas = Math.floor(segundosTotales / 3600);
+  const minutos = Math.floor(segundosTotales / 60) % 60;
+  const segundos = segundosTotales % 60;
+  return horas > 0
+    ? `${horas} h ${minutos} min ${segundos} s`
+    : `${minutos} min ${segundos} s`;
+}
+
 function App() {
   const [rol, setRol] = useState(null);
+  const [ahora, setAhora] = useState(Date.now);
   const [cantidades, setCantidades] = useState({});
   const [tipoPedido, setTipoPedido] = useState("mesa");
   const [mesa, setMesa] = useState("1");
@@ -31,6 +45,15 @@ function App() {
   const [mensaje, setMensaje] = useState("");
   const [pedidos, setPedidos] = useState([]);
   const [errorPedidos, setErrorPedidos] = useState("");
+
+  useEffect(() => {
+    if (rol !== "cocina") return;
+
+    const actualizarReloj = () => setAhora(Date.now());
+    actualizarReloj();
+    const intervalo = window.setInterval(actualizarReloj, 1000);
+    return () => window.clearInterval(intervalo);
+  }, [rol]);
 
   // Escuchar pedidos en tiempo real
   useEffect(() => {
@@ -194,6 +217,11 @@ function App() {
       <p className="hora-pedido">
         Registrado a las {formatoHora(pedido.fecha)}
       </p>
+      {modo === "cocina" && (
+        <p className="hora-pedido" role="timer">
+          Tiempo de espera: <strong>{formatearEspera(pedido.fecha, ahora)}</strong>
+        </p>
+      )}
 
       
 <div className="lista-productos-pedido">
