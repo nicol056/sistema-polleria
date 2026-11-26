@@ -219,15 +219,7 @@ function App() {
           </span>
         </div>
 
-        {modo === "cocina" ? (
-          <span
-            className={`estado-pedido estado-${pedido.estado}`}
-            role="img"
-            aria-label={pedido.estado === "pendiente" ? "Pendiente" : pedido.estado === "preparacion" ? "En preparación" : "Listo para recoger"}
-          >
-            ●
-          </span>
-        ) : (
+        {modo === "mesero" && (
           <span className={`estado-pedido estado-${pedido.estado}`}>
             Listo para recoger
           </span>
