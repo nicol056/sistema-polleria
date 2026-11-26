@@ -155,18 +155,6 @@ function App() {
     (pedido) => pedido.estado === "entregado"
   );
 
-  const pendientes = pedidosCocina.filter(
-    (pedido) => pedido.estado === "pendiente"
-  );
-
-  const preparacion = pedidosCocina.filter(
-    (pedido) => pedido.estado === "preparacion"
-  );
-
-  const listos = pedidosCocina.filter(
-    (pedido) => pedido.estado === "entregado"
-  );
-
   const formatoHora = (fecha) =>
     new Date(fecha).toLocaleTimeString("es-PE", {
       hour: "2-digit",
@@ -188,15 +176,19 @@ function App() {
           </span>
         </div>
 
-        <span className={`estado-pedido estado-${pedido.estado}`}>
-          {pedido.estado === "pendiente"
-            ? "Pendiente"
-            : pedido.estado === "preparacion"
-              ? "En preparación"
-              : pedido.estado === "entregado"
-                ? "Listo para recoger"
-                : "Finalizado"}
-        </span>
+        {modo === "cocina" ? (
+          <span
+            className={`estado-pedido estado-${pedido.estado}`}
+            role="img"
+            aria-label={pedido.estado === "pendiente" ? "Pendiente" : pedido.estado === "preparacion" ? "En preparación" : "Listo para recoger"}
+          >
+            ●
+          </span>
+        ) : (
+          <span className={`estado-pedido estado-${pedido.estado}`}>
+            Listo para recoger
+          </span>
+        )}
       </div>
 
       <p className="hora-pedido">
@@ -454,32 +446,7 @@ function App() {
                   </div>
                 ) : (
                   <div className="lista-cocina">
-                    {pendientes.length > 0 && (
-                      <>
-                        <h2>🟡 Pedidos pendientes</h2>
-                        {pendientes.map((pedido) =>
-                          tarjetaPedido(pedido, "cocina")
-                        )}
-                      </>
-                    )}
-
-                    {preparacion.length > 0 && (
-                      <>
-                        <h2>🟢 En preparación</h2>
-                        {preparacion.map((pedido) =>
-                          tarjetaPedido(pedido, "cocina")
-                        )}
-                      </>
-                    )}
-
-                    {listos.length > 0 && (
-                      <>
-                        <h2>🔵 Pedidos listos para recoger</h2>
-                        {listos.map((pedido) =>
-                          tarjetaPedido(pedido, "cocina")
-                        )}
-                      </>
-                    )}
+                    {pedidosCocina.map((pedido) => tarjetaPedido(pedido, "cocina"))}
                   </div>
                 )}
               </div>
