@@ -169,9 +169,9 @@ function App() {
   };
 
   // Pedidos que cocina todavía debe mostrar
-  const pedidosCocina = pedidos.filter(
-    (pedido) => pedido.estado !== "finalizado"
-  );
+  const pedidosCocina = pedidos
+    .filter((pedido) => pedido.estado !== "finalizado")
+    .sort((a, b) => b.fecha - a.fecha);
 
   // Pedidos listos que el mesero debe recoger
   const pedidosListos = pedidos.filter(
@@ -189,6 +189,14 @@ function App() {
       className={`pedido-cocina estado-${pedido.estado}`}
       key={pedido.id}
     >
+      {modo === "cocina" && (
+        <p className="hora-pedido" role="timer" style={{ marginTop: 0 }}>
+          Tiempo de espera
+          <strong style={{ display: "block", fontSize: "1.5rem", lineHeight: 1.2, fontVariantNumeric: "tabular-nums" }}>
+            {formatearEspera(pedido.fecha, ahora)}
+          </strong>
+        </p>
+      )}
       <div className="pedido-cabecera">
         <div>
           <h3>Pedido #{pedido.id.slice(-5).toUpperCase()}</h3>
@@ -217,11 +225,6 @@ function App() {
       <p className="hora-pedido">
         Registrado a las {formatoHora(pedido.fecha)}
       </p>
-      {modo === "cocina" && (
-        <p className="hora-pedido" role="timer">
-          Tiempo de espera: <strong>{formatearEspera(pedido.fecha, ahora)}</strong>
-        </p>
-      )}
 
       
 <div className="lista-productos-pedido">
