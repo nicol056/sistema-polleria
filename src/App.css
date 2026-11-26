@@ -637,3 +637,49 @@ footer {
     gap: 8px;
   }
 }
+
+
+/* Aprovechar el ancho y la altura disponibles en Cocina. */
+#root:has(.lista-cocina, .sin-pedidos) {
+  width: 100%;
+  border-inline: 0;
+}
+
+.main:has(.lista-cocina, .sin-pedidos) {
+  align-items: stretch;
+  padding: clamp(12px, 2vw, 32px);
+}
+
+.panel:has(.lista-cocina, .sin-pedidos) {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin: 0;
+}
+
+.panel:has(.lista-cocina, .sin-pedidos) > .volver {
+  align-self: flex-start;
+}
+
+.pedido-panel:has(.lista-cocina, .sin-pedidos) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.lista-cocina {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+}
+
+.lista-cocina .pedido-cocina {
+  aspect-ratio: auto;
+  min-height: 200px;
+  overflow: visible;
+}
+
+.sin-pedidos {
+  flex: 1;
+  display: grid;
+  align-content: center;
+}
