@@ -389,9 +389,11 @@ select {
   aspect-ratio: 1 / 1;
   margin: 0;
   padding: 14px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-left: 5px solid #e5b32b;
+  --color-estado: #e5b32b;
+  background: var(--color-estado);
+  border: 1px solid var(--color-estado);
+  border-left-width: 5px;
+  color: #101820;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -402,11 +404,11 @@ select {
 /* Colores por estado */
 
 .lista-cocina .pedido-cocina.estado-preparacion {
-  border-left-color: #269b5c;
+  --color-estado: #269b5c;
 }
 
 .lista-cocina .pedido-cocina.estado-entregado {
-  border-left-color: #2984d6;
+  --color-estado: #2984d6;
 }
 
 /* ========================================
@@ -687,4 +689,18 @@ footer {
   flex: 1;
   display: grid;
   align-content: center;
+}
+
+.lista-cocina .pedido-cabecera > div > span,
+.lista-cocina .hora-pedido {
+  color: inherit;
+}
+
+.lista-cocina .acciones-pedido button {
+  background: #182435;
+  color: #fff;
+}
+
+.lista-cocina .acciones-pedido button:hover {
+  background: #0d1622;
 }
