@@ -649,7 +649,7 @@ footer {
 
 .main:has(.lista-cocina, .sin-pedidos) {
   align-items: stretch;
-  padding: clamp(12px, 2vw, 32px);
+  padding: 8px clamp(12px, 2vw, 32px) 16px;
 }
 
 .panel:has(.lista-cocina, .sin-pedidos) {
@@ -661,6 +661,7 @@ footer {
 
 .panel:has(.lista-cocina, .sin-pedidos) > .volver {
   align-self: flex-start;
+  margin-bottom: 6px;
 }
 
 .pedido-panel:has(.lista-cocina, .sin-pedidos) {
@@ -670,7 +671,16 @@ footer {
   margin: 0;
 }
 
+.pedido-panel:has(.lista-cocina, .sin-pedidos) > h1 {
+  margin: 4px 0;
+}
+
+.pedido-panel:has(.lista-cocina, .sin-pedidos) > p {
+  margin-top: 2px;
+}
+
 .lista-cocina {
+  margin-top: 10px;
   grid-template-columns: none;
   grid-auto-flow: column;
   grid-auto-columns: min(100%, 240px);
@@ -686,6 +696,7 @@ footer {
 }
 
 .sin-pedidos {
+  margin-top: 10px;
   flex: 1;
   display: grid;
   align-content: center;
